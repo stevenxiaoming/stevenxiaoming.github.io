@@ -10,7 +10,7 @@
     
     <title>
         
-            Me | 
+            新生活 | 
         
         Steven
     </title>
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Steven Ming">
     <meta name="description" content="Here is a fighting Steven called Ming.">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,大学">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -48,9 +48,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://stevenxiaoming.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Me | Steven">
+    <meta property="og:title" content="新生活 | Steven">
     <meta property="og:description" content="Here is a fighting Steven called Ming.">
-    
+    <meta property="og:article:tag" content="大学"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -205,15 +205,48 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新目标"><span class="post-toc-number">1.</span> <span class="post-toc-text">新目标</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
 
 <!-- Layouts -->
 
-    <!-- Post Module -->
+    <!-- Hidden Page -->
     <div class="material-post_container">
-
         <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-
+            <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
                 <!-- Post Header(Thumbnail & Title) -->
                 
     <!-- Paradox Post Header -->
@@ -230,7 +263,7 @@
         
     
             <p class="article-headline-p">
-                Me
+                新生活
             </p>
         </div>
 
@@ -239,8 +272,8 @@
 
 
                 
-                    <!-- Paradox Post Info -->
-                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+                  <!-- Paradox Post Info -->
+                  <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
 
     <!-- Author Avatar -->
     <div id="author-avatar">
@@ -273,7 +306,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/大学/">大学</a>
     </ul>
     
 
@@ -300,7 +333,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Me&url=https://stevenxiaoming.github.io//about/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=新生活&url=https://stevenxiaoming.github.io//2017/03/22/新生活/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -309,7 +342,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Me&url=https://stevenxiaoming.github.io//about/index.html&via=Steven Ming" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=新生活&url=https://stevenxiaoming.github.io//2017/03/22/新生活/index.html&via=Steven Ming" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -318,7 +351,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://stevenxiaoming.github.io//about/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://stevenxiaoming.github.io//2017/03/22/新生活/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -327,7 +360,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://stevenxiaoming.github.io//about/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://stevenxiaoming.github.io//2017/03/22/新生活/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -347,35 +380,32 @@
 </div>
                 
 
-                <!-- Post Content -->
-                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-    
-        <p>一只不能吃，不能喝，瘦的跟排骨似的程序猿；<br>不管怎么吃，怎么喝都长不胖。</p>
-<p>一只不爱运动不爱睡，成天也不知道在做什么的大学森；<br>写写代码，看看网课，有时玩两局红管；<br>自己做过小项目玩，但是最终都没有上线很久。</p>
-<p>一只不会浪，也不宅的理工男；<br>能和熟悉的人畅心所谈，只和熟识的人一起玩耍。</p>
-<p>【此页无图，没有自拍，没有他拍，也没有偷拍<em>(:зゝ∠)</em>】</p>
-
-    
-
-    
-</div>
-
+                <!-- Post Hidden -->
+                <div id="post-content">
+                    <p>私有文章，暂不公开</p>
+                </div>
 
                 
 
                 <!-- Post Comments -->
                 
-                    
 
 
 
 
-                
             </div>
 
             <!-- Post Prev & Next Nav -->
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
+    
+        <a href="/2017/03/22/实习相关/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
     
 
     <!-- Section Spacer -->
@@ -387,6 +417,7 @@
 
         </div>
     </div>
+
 
 
 
@@ -579,6 +610,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 

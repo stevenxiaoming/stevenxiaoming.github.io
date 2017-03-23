@@ -4,31 +4,138 @@
   
     
     <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>https://stevenxiaoming.github.io/2017/03/19/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+      <title><![CDATA[Material主题的改造]]></title>
+      <url>https://stevenxiaoming.github.io/2017/03/23/Material%E4%B8%BB%E9%A2%98%E7%9A%84%E6%94%B9%E9%80%A0/</url>
+      <content type="html"><![CDATA[<p>我的博客就是基于hexo-theme-material主题进行改造的，我不是前端攻城狮，所以写的烂，仅供参考，请勿吐槽……</p>
+<p><a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="external">material主题源码</a></p>
+<p>目前还没找到代码染色，等找到代码染色后更新一下，看得更舒服更清楚一点 Orz</p>
+<h2 id="首页文章添加标签"><a href="#首页文章添加标签" class="headerlink" title="首页文章添加标签"></a>首页文章添加标签</h2><ul>
+<li>在主题文件夹 layout_partial 内找到 Paradox-post_entry.ejs 文件</li>
+<li>找到<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- Category --&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post_entry-category"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> list_categories(post.categories, &#123;</span></div><div class="line">            <span class="symbol">show_count:</span> <span class="literal">false</span>,</div><div class="line">            <span class="class"><span class="keyword">class</span>: '<span class="title">post_tag</span>',</span></div><div class="line">            <span class="symbol">style:</span> <span class="string">'none'</span></div><div class="line">        &#125;) <span class="xml"><span class="tag">%&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这是显示分类的代码</p>
+<ul>
+<li>在这段代码前添加<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- Tags --&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post_entry-category"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> list_tags(post.tags, &#123;</span></div><div class="line">            <span class="symbol">show_count:</span> <span class="literal">false</span>,</div><div class="line">            <span class="class"><span class="keyword">class</span>: '<span class="title">post_category</span>',</span></div><div class="line">            <span class="symbol">style:</span> <span class="string">'none'</span></div><div class="line">        &#125;) <span class="xml"><span class="tag">%&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&amp;nbsp;|<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这一段就是添加标签的代码，第10行是“|”分割符，用于分割标签和分类</p>
 ]]></content>
       
         <categories>
             
-            <category> TEST </category>
+            <category> 学习STUDY </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> hello </tag>
+            <tag> hexo </tag>
             
-            <tag> world </tag>
+            <tag> material </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[编程训练]]></title>
+      <url>https://stevenxiaoming.github.io/2017/03/22/%E7%BC%96%E7%A8%8B%E8%AE%AD%E7%BB%83/</url>
+      <content type="html"><![CDATA[<h3 id="在线编程网址"><a href="#在线编程网址" class="headerlink" title="在线编程网址"></a>在线编程网址</h3><ul>
+<li><a href="https://leetcode.com/" target="_blank" rel="external">LeetCode</a><br>听说很适合找实习的做，每道题里面也有题解，以及运行速度比较。</li>
+<li><a href="http://codeforces.com/" target="_blank" rel="external">Codeforces</a><br>很早以前注册过账号（<del>然后再也没动过</del>）</li>
+<li><a href="https://www.nowcoder.com/" target="_blank" rel="external">牛客网nowcoder</a><br>这个网上也有很多题目，有的也比较经典（<del>甚至还搬了很多OJ题目</del>），也有面试笔试会考的题目，只要不是靠算法什么的，题目都不会很难</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习STUDY </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 编程 </tag>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> Codeforces </tag>
+            
+            <tag> nowcoder </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[实习相关]]></title>
+      <url>https://stevenxiaoming.github.io/2017/03/22/%E5%AE%9E%E4%B9%A0%E7%9B%B8%E5%85%B3/</url>
+      <content type="html"><![CDATA[<p>我也不知道写什么好<em>(:зゝ∠)</em>，先编一份简历出来吧。<br>不过，首先还要找一份合适的模板。</p>
+<p>有的内推群会给内推机会，有机会可以去看看。作为程序猿的话，推广自己最好的平台莫过于github了吧。</p>
+<h2 id="简历"><a href="#简历" class="headerlink" title="简历"></a>简历</h2><ul>
+<li><a href="http://www.zhiyeapp.com/" target="_blank" rel="external">知页</a><br>在线制作简历，只要填空就好了</li>
+<li>各类求职网站，也可以制作简历，并且可以直接导出。</li>
+</ul>
+<h2 id="实习关注"><a href="#实习关注" class="headerlink" title="实习关注"></a>实习关注</h2><ul>
+<li><a href="https://www.nowcoder.com/" target="_blank" rel="external">牛客网</a><br>我也不知道是怎么找到这个网站的，不过里面有很多实习单位的笔试真题，还有专项训练什么可以做做看，了解下自己的水平也是不错的</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 实习&amp;工作WORK </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 实习 </tag>
+            
+            <tag> 内推 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[新生活]]></title>
+      <url>https://stevenxiaoming.github.io/2017/03/22/%E6%96%B0%E7%94%9F%E6%B4%BB/</url>
+      <content type="html"><![CDATA[<p>大三的冬季学期考试周结束了，除了等待成绩，好像没什么可做的了，吃喝玩乐、不学无术的生活差不多也该过去了，是时候重新开始好好做人，给自己明确下方向。</p>
+<p>先立几个Flag吧，给自己点东西，虽然不知道能够坚持多久，但是总会有用的吧。</p>
+<h3 id="新目标"><a href="#新目标" class="headerlink" title="新目标"></a>新目标</h3><ul>
+<li><p>学习</p>
+<ul>
+<li>学习一个新的框架（SSM）</li>
+<li>重新学习Java，从基本原理开始</li>
+<li>了解Spring核心（一点点来吧）</li>
+<li>每天做点编程题和实习笔试题</li>
+</ul>
+</li>
+<li><p>生活</p>
+<ul>
+<li>少吃外卖</li>
+<li>多运动（每天做点俯卧撑也好）</li>
+<li>找一份实习</li>
+<li>找点喜欢的音乐听</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 生活LIFE </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 大学 </tag>
             
         </tags>
         
