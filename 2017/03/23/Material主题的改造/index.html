@@ -182,7 +182,8 @@
 
     <!-- Custom Head -->
     
-</head>
+<link rel="stylesheet" href="/css/prism-coy.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
     
@@ -229,7 +230,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#首页文章添加标签"><span class="post-toc-number">1.</span> <span class="post-toc-text">首页文章添加标签</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#首页文章添加标签"><span class="post-toc-number">1.</span> <span class="post-toc-text">首页文章添加标签</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码高亮染色"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码高亮染色</span></a></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -386,19 +387,76 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>我的博客就是基于hexo-theme-material主题进行改造的，我不是前端攻城狮，所以写的烂，仅供参考，请勿吐槽……</p>
-<p><a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="external">material主题源码</a></p>
-<p>目前还没找到代码染色，等找到代码染色后更新一下，看得更舒服更清楚一点 Orz</p>
+<p><a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="external">material主题源码</a><br><a href="https://material.viosey.com/" target="_blank" rel="external">material食用说明书</a></p>
 <h2 id="首页文章添加标签"><a href="#首页文章添加标签" class="headerlink" title="首页文章添加标签"></a>首页文章添加标签</h2><ul>
 <li>在主题文件夹 layout_partial 内找到 Paradox-post_entry.ejs 文件</li>
-<li>找到<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- Category --&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post_entry-category"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> list_categories(post.categories, &#123;</span></div><div class="line">            <span class="symbol">show_count:</span> <span class="literal">false</span>,</div><div class="line">            <span class="class"><span class="keyword">class</span>: '<span class="title">post_tag</span>',</span></div><div class="line">            <span class="symbol">style:</span> <span class="string">'none'</span></div><div class="line">        &#125;) <span class="xml"><span class="tag">%&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
+<li>找到</li>
 </ul>
+<pre class="line-numbers language-html"><code class="language-html">    <span class="token comment" spellcheck="true">&lt;!-- Category --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post_entry-category<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%-</span> <span class="token attr-name">list_categories(post.categories,</span> <span class="token attr-name">{</span>
+            <span class="token attr-name"><span class="token namespace">show_count:</span></span> <span class="token attr-name">false,</span>
+            <span class="token attr-name"><span class="token namespace">class:</span></span> <span class="token attr-name">'post_tag',</span>
+            <span class="token attr-name"><span class="token namespace">style:</span></span> <span class="token attr-name">'none'</span>
+        <span class="token attr-name">})</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这是显示分类的代码</p>
 <ul>
-<li>在这段代码前添加<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- Tags --&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post_entry-category"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> list_tags(post.tags, &#123;</span></div><div class="line">            <span class="symbol">show_count:</span> <span class="literal">false</span>,</div><div class="line">            <span class="class"><span class="keyword">class</span>: '<span class="title">post_category</span>',</span></div><div class="line">            <span class="symbol">style:</span> <span class="string">'none'</span></div><div class="line">        &#125;) <span class="xml"><span class="tag">%&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&amp;nbsp;|<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
+<li>在这段代码前添加</li>
 </ul>
+<pre class="line-numbers language-html"><code class="language-html">    <span class="token comment" spellcheck="true">&lt;!-- Tags --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post_entry-category<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%-</span> <span class="token attr-name">list_tags(post.tags,</span> <span class="token attr-name">{</span>
+            <span class="token attr-name"><span class="token namespace">show_count:</span></span> <span class="token attr-name">false,</span>
+            <span class="token attr-name"><span class="token namespace">class:</span></span> <span class="token attr-name">'post_category',</span>
+            <span class="token attr-name"><span class="token namespace">style:</span></span> <span class="token attr-name">'none'</span>
+        <span class="token attr-name">})</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token entity" title="&nbsp;">&amp;nbsp;</span>|<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这一段就是添加标签的代码，第10行是“|”分割符，用于分割标签和分类</p>
+<h2 id="代码高亮染色"><a href="#代码高亮染色" class="headerlink" title="代码高亮染色"></a>代码高亮染色</h2><p>可以参考<a href="https://material.viosey.com/expert/" target="_blank" rel="external">官方文档</a>安装插件 <strong>hexo-prism-plugin</strong></p>
+<p>安装指令： <strong>npm i -S hexo-prism-plugin</strong></p>
+<p>但是基于这个插件的文档虽然可以染色，但是在代码行数标注方面有不少bug，所以在该插件的基础上又进行了一定的优化（至少比原来稍微好看一点）</p>
+<p>经实测，在Material主题下，只有”coy”主题会显示代码行数，但是显示的位置很奇怪，所以就选择该主题对代码样式进行修改，主要修改两处</p>
+<p>在<strong>站点目录</strong>下，找到路径 \node_modules\prismjs\plugins\line-numbers 中 prism-line-numbers.css文件并打开</p>
+<p>将</p>
+<pre class="line-numbers language-css"><code class="language-css">    <span class="token selector"><span class="token class">.line-numbers</span> <span class="token class">.line-numbers-rows</span> </span><span class="token punctuation">{</span>
+        <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+        <span class="token property">pointer-events</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+        <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+        <span class="token property">padding-left</span><span class="token punctuation">:</span> -<span class="token number">3.8</span>em<span class="token punctuation">;</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">3.2</span>em<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* works for line-numbers below 1000 lines */</span>
+        <span class="token property">letter-spacing</span><span class="token punctuation">:</span> -<span class="token number">1</span>px<span class="token punctuation">;</span>
+        <span class="token property">border-right</span><span class="token punctuation">:</span> <span class="token number">1</span>px solid <span class="token hexcode">#999</span><span class="token punctuation">;</span>
+
+        <span class="token property">-webkit-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+        <span class="token property">-moz-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+        <span class="token property">-ms-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+        <span class="token property">user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>中的 width 属性进行修改，该属性是代码行数的宽度，我将其修改为2em</p>
+<p>在<strong>主题目录</strong>下，找到路径 \source\css 中的 style.css 文件并打开</p>
+<p>将</p>
+<pre class="line-numbers language-css"><code class="language-css">    <span class="token selector"><span class="token id">#post-content</span> pre </span><span class="token punctuation">{</span>
+        <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token hexcode">#f7f7f7</span><span class="token punctuation">;</span>
+        <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">13</span>px<span class="token punctuation">;</span>
+        <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">19</span>px<span class="token punctuation">;</span>
+        <span class="token property">overflow</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+        <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">16</span>px<span class="token punctuation">;</span>
+        <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">3</span>px<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>中的 padding 属性进行修改，该属性是代码块的四周内间距，原css样式设置为上下左右都为16px，我将其修改为</p>
+<pre class="line-numbers language-css"><code class="language-css">    <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">16</span>px <span class="token number">0</span>px <span class="token number">16</span>px<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>使其左右间距为0，上下间距还是保持16px</p>
+<p>最终样式如本文所示，虽然感觉还是不那么好看，但是比原来的好看</p>
 
     
 
@@ -528,7 +586,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">5</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">7</span></a>
             </ul>
         </li>
         
@@ -546,7 +604,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/学习STUDY/">学习STUDY<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/实习-工作WORK/">实习&工作WORK<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/生活LIFE/">生活LIFE<span class="sidebar_archives-count">2</span></a>
+                <a class="sidebar_archives-link" href="/categories/学习STUDY/">学习STUDY<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/实习-工作WORK/">实习&工作WORK<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/生活LIFE/">生活LIFE<span class="sidebar_archives-count">2</span></a>
             </ul>
         </li>
         
@@ -590,7 +648,7 @@
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">5</span>
+                <span class="sidebar-badge">7</span>
             </a>
         </li>
         

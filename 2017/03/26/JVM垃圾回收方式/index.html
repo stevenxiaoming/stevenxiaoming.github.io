@@ -10,7 +10,7 @@
     
     <title>
         
-            日记拼图1 | 
+            JVM垃圾回收方式 | 
         
         Steven
     </title>
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Steven Ming">
     <meta name="description" content="Here is a fighting Steven called Ming.">
-    <meta name="keywords" content="null,日记">
+    <meta name="keywords" content="null,java">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -48,9 +48,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://stevenxiaoming.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="日记拼图1 | Steven">
+    <meta property="og:title" content="JVM垃圾回收方式 | Steven">
     <meta property="og:description" content="Here is a fighting Steven called Ming.">
-    <meta property="og:article:tag" content="日记"> 
+    <meta property="og:article:tag" content="java"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -230,7 +230,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#私有文章，暂不公开"><span class="post-toc-number">1.</span> <span class="post-toc-text">私有文章，暂不公开</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JVM垃圾回收方式"><span class="post-toc-number">1.</span> <span class="post-toc-text">JVM垃圾回收方式</span></a></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -244,10 +244,12 @@
 
 <!-- Layouts -->
 
-    <!-- Hidden Page -->
+    <!-- Post Module -->
     <div class="material-post_container">
+
         <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
                 <!-- Post Header(Thumbnail & Title) -->
                 
     <!-- Paradox Post Header -->
@@ -264,7 +266,7 @@
         
     
             <p class="article-headline-p">
-                日记拼图1
+                JVM垃圾回收方式
             </p>
         </div>
 
@@ -273,8 +275,8 @@
 
 
                 
-                  <!-- Paradox Post Info -->
-                  <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
 
     <!-- Author Avatar -->
     <div id="author-avatar">
@@ -283,7 +285,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Steven Ming</strong>
-        <span>3月 24, 2017</span>
+        <span>3月 26, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -307,7 +309,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/日记/">日记</a>
+        <a class="post_tag-link" href="/tags/java/">java</a>
     </ul>
     
 
@@ -334,7 +336,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=日记拼图1&url=https://stevenxiaoming.github.io//2017/03/24/日记拼图1/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=JVM垃圾回收方式&url=https://stevenxiaoming.github.io//2017/03/26/JVM垃圾回收方式/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -343,7 +345,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=日记拼图1&url=https://stevenxiaoming.github.io//2017/03/24/日记拼图1/index.html&via=Steven Ming" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=JVM垃圾回收方式&url=https://stevenxiaoming.github.io//2017/03/26/JVM垃圾回收方式/index.html&via=Steven Ming" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -352,7 +354,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://stevenxiaoming.github.io//2017/03/24/日记拼图1/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://stevenxiaoming.github.io//2017/03/26/JVM垃圾回收方式/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -361,7 +363,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://stevenxiaoming.github.io//2017/03/24/日记拼图1/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://stevenxiaoming.github.io//2017/03/26/JVM垃圾回收方式/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -381,26 +383,38 @@
 </div>
                 
 
-                <!-- Post Hidden -->
-                <div id="post-content">
-                    <p>私有文章，暂不公开</p>
-                </div>
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="JVM垃圾回收方式"><a href="#JVM垃圾回收方式" class="headerlink" title="JVM垃圾回收方式"></a>JVM垃圾回收方式</h2><p>JVM垃圾回收方式分为 <strong>复制算法</strong> 和 <strong>标记清理算法</strong></p>
+<p><strong>复制算法</strong>：两个区域A和B，初始对象在A，继续存活的对象被转移到B。此为新生代最常用的算法；<br><strong>标记清理算法</strong>：一块区域，标记要回收的对象，然后回收，一定会出现碎片，那么引出；<br><strong>标记-整理算法</strong>：多了碎片整理，整理出更大的内存放更大的对象。</p>
+<p><strong>Serial New收集器</strong>，是针对新生代的收集器，采用的是复制算法；<br><strong>Parallel New（并行）收集器</strong>，新生代采用复制算法，老年代采用标记整理；<br><strong>Parallel Scavenge（并行）收集器</strong>，针对新生代，采用复制收集算法；<br><strong>Serial Old（串行）收集器</strong>，新生代采用复制，老年代采用标记整理；<br><strong>Parallel Old（并行）收集器</strong>，针对老年代，标记整理；<br><strong>CMS收集器</strong>，基于标记清理；<br><strong>G1收集器</strong>：整体上是基于标记-整理 ，局部采用复制；</p>
+<hr>
+<p><strong>新生代基本采用复制算法<br>老年代采用标记整理算法<br>cms采用标记清理</strong></p>
+
+    
+
+    
+</div>
+
 
                 
 
                 <!-- Post Comments -->
                 
+                    
 
 
 
 
+                
             </div>
 
             <!-- Post Prev & Next Nav -->
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/03/26/JVM垃圾回收方式/" id="post_nav-newer" class="prev-content">
+        <a href="/2017/03/27/专业课软件下载/" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -414,7 +428,7 @@
 
     <!-- Next Nav -->
     
-        <a href="/2017/03/24/长大/" id="post_nav-older" class="next-content">
+        <a href="/2017/03/24/日记拼图1/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -426,7 +440,6 @@
 
         </div>
     </div>
-
 
 
 

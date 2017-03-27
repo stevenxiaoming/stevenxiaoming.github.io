@@ -385,7 +385,7 @@ a {
     font-size: 13px;
     line-height: 19px;
     overflow: auto;
-    padding: 16px;
+    padding: 16px 0px 16px;
     border-radius: 3px;
 }
 #post-content .gutter,
