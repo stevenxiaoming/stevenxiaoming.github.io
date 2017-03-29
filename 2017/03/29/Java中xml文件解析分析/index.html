@@ -10,7 +10,7 @@
     
     <title>
         
-            标签: 实习 | 
+            Java中xml文件解析分析 | 
         
         Steven
     </title>
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Steven Ming">
     <meta name="description" content="Here is a fighting Steven called Ming.">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,java,xml">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -48,9 +48,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://stevenxiaoming.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: 实习 | Steven">
+    <meta property="og:title" content="Java中xml文件解析分析 | Steven">
     <meta property="og:description" content="Here is a fighting Steven called Ming.">
-    
+    <meta property="og:article:tag" content="java"> <meta property="og:article:tag" content="xml"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -204,101 +204,325 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
 
-    <!-- Normal Post -->
-    
-        
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解析方式分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">解析方式分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DOM"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">DOM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SAX"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">SAX</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JDOM"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">JDOM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DOM4J"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">DOM4J</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#具体性能分析"><span class="post-toc-number">2.</span> <span class="post-toc-text">具体性能分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#xml大小为-1kb"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">xml大小为 1kb</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#xml大小为-100kb"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">xml大小为 100kb</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#xml大小为-600kb"><span class="post-toc-number">2.0.3.</span> <span class="post-toc-text">xml大小为 600kb</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#xml大小为-1MB"><span class="post-toc-number">2.0.4.</span> <span class="post-toc-text">xml大小为 1MB</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#xml大小为-5MB（测试结果不稳定）"><span class="post-toc-number">2.0.5.</span> <span class="post-toc-text">xml大小为 5MB（测试结果不稳定）</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解析方式选择"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">解析方式选择</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/03/22/实习相关/">实习相关</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            我也不知道写什么好_(:зゝ∠)_，先编一份简历出来吧。不过，首先还要找一份合适的模板。
-有的内推群...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/03/22/实习相关/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Steven Ming's avatar">
-            </div>
-            <div>
-                <strong>Steven Ming</strong>
-                <span>3月 22, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-			<!-- Tags -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/tags/内推/">内推</a>, <a class="post_category-link" href="/tags/实习/">实习</a>
-            </span>
-			
-			<span>&nbsp;|</span>
-			
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_tag-link" href="/categories/实习-工作WORK/">实习&工作WORK</a>
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-        
-    
-
-    
-
-    
-        <script>
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 8; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')')
-
-        locatePost = locatePost.next();
-    }
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Java中xml文件解析分析
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Steven Ming</strong>
+        <span>3月 29, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/java/">java</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/xml/">xml</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Java中xml文件解析分析&url=https://stevenxiaoming.github.io//2017/03/29/Java中xml文件解析分析/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Java中xml文件解析分析&url=https://stevenxiaoming.github.io//2017/03/29/Java中xml文件解析分析/index.html&via=Steven Ming" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://stevenxiaoming.github.io//2017/03/29/Java中xml文件解析分析/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://stevenxiaoming.github.io//2017/03/29/Java中xml文件解析分析/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>java中目前有四种解析xml文件的解析方式：DOM、SAX、JDOM、DOM4J</p>
+<h2 id="解析方式分析"><a href="#解析方式分析" class="headerlink" title="解析方式分析"></a>解析方式分析</h2><p>基础方法：</p>
+<ul>
+<li>DOM: 平台无关的官方解析方式</li>
+<li>SAX: 基于事件驱动的解析方式</li>
+</ul>
+<p>扩展方法（只有java平台可以使用）：</p>
+<ul>
+<li>JDOM：</li>
+<li>DOM4J：</li>
+</ul>
+<h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>DOM解析时，一次性将xml文件全部加入内存</p>
+<p><strong>优点</strong></p>
+<ul>
+<li>树结构，直观，容易编写</li>
+<li>树结构保存在内存中，便于修改</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>内存消耗大，影响解析性能，内存容易溢出</li>
+</ul>
+<hr>
+<h3 id="SAX"><a href="#SAX" class="headerlink" title="SAX"></a>SAX</h3><p>逐标签解析</p>
+<p><strong>优点</strong></p>
+<ul>
+<li>事件驱动，内存消耗小</li>
+<li>仅适用于处理xml数据</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>不易编码</li>
+<li>难以同时访问多处不同数据</li>
+</ul>
+<hr>
+<h3 id="JDOM"><a href="#JDOM" class="headerlink" title="JDOM"></a>JDOM</h3><ul>
+<li>使用具体类而不用接口</li>
+<li>API大量使用Collections类</li>
+</ul>
+<hr>
+<h3 id="DOM4J"><a href="#DOM4J" class="headerlink" title="DOM4J"></a>DOM4J</h3><ul>
+<li>使用接口和抽象基本方法</li>
+<li>JDOM智能分支</li>
+<li>性能优异、灵活性好</li>
+</ul>
+<hr>
+<h2 id="具体性能分析"><a href="#具体性能分析" class="headerlink" title="具体性能分析"></a>具体性能分析</h2><p>根据文件大小不同进行性能分析，对同一文件进行完全解析的时间进行比较（单位ms）</p>
+<h4 id="xml大小为-1kb"><a href="#xml大小为-1kb" class="headerlink" title="xml大小为 1kb"></a>xml大小为 1kb</h4><pre><code>DOM性能：43
+SAX性能：6
+JDOM性能：48
+DOM4J性能：45
+</code></pre><h4 id="xml大小为-100kb"><a href="#xml大小为-100kb" class="headerlink" title="xml大小为 100kb"></a>xml大小为 100kb</h4><pre><code>DOM性能：89
+SAX性能：32
+JDOM性能：109
+DOM4J性能：74
+</code></pre><h4 id="xml大小为-600kb"><a href="#xml大小为-600kb" class="headerlink" title="xml大小为 600kb"></a>xml大小为 600kb</h4><pre><code>DOM性能：115
+SAX性能：54
+JDOM性能：209
+DOM4J性能：149
+</code></pre><h4 id="xml大小为-1MB"><a href="#xml大小为-1MB" class="headerlink" title="xml大小为 1MB"></a>xml大小为 1MB</h4><pre><code>DOM性能：162
+SAX性能：80
+JDOM性能：205
+DOM4J性能：131
+</code></pre><h4 id="xml大小为-5MB（测试结果不稳定）"><a href="#xml大小为-5MB（测试结果不稳定）" class="headerlink" title="xml大小为 5MB（测试结果不稳定）"></a>xml大小为 5MB（测试结果不稳定）</h4><pre><code>性能测试结果1：
+    DOM性能：693
+    SAX性能：142
+    JDOM性能：529
+    DOM4J性能：453
+性能测试结果2：
+    DOM性能：772
+    SAX性能：161
+    JDOM性能：496
+    DOM4J性能：546
+性能测试结果3：
+    DOM性能：674
+    SAX性能：155
+    JDOM性能：414
+    DOM4J性能：506
+性能测试结果4：
+    DOM性能：677
+    SAX性能：169
+    JDOM性能：447
+    DOM4J性能：438
+</code></pre><p>综上，SAX对全文件的解析速度最快，JDOM的解析速度最慢，而DOM和DOM4J的解析性能取决于文件，当文件大小达到1MB以上时，DOM4J的分析性能优于DOM，因此根据文件大小和具体使用情况选择不同的解析方式。</p>
+<p>当文件大小达到5MB时，性能测试结果浮动偏差较大，DOM、JDOM、DOM4J这三种解析方式的性能强弱处于不稳定状态，虽然每次测试的文件都是一样的，但是为什么会发生这种情况还不太了解。</p>
+<h3 id="解析方式选择"><a href="#解析方式选择" class="headerlink" title="解析方式选择"></a>解析方式选择</h3><ol>
+<li><p>在网站开发中，如果发布一条公告使用xml文件格式，可以采用DOM解析。公告的内容较少，所以文件大小不大，并且对不同节点进行修改也较为方便。</p>
+</li>
+<li><p>选择性数据读取时，不适合选择SAX解析方式，如根据某一产品型号，获取其名称等。</p>
+</li>
+<li><p>对于复杂的xml文档适合采用DOM4J。</p>
+</li>
+</ol>
+<blockquote>
+<p>Hibernate的xml解析方式采用的是DOM4J</p>
+</blockquote>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/03/27/专业课软件下载/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -490,6 +714,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 

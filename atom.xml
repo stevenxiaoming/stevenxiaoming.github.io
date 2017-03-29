@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://stevenxiaoming.github.io/"/>
-  <updated>2017-03-27T08:18:41.445Z</updated>
+  <updated>2017-03-29T13:42:32.001Z</updated>
   <id>https://stevenxiaoming.github.io/</id>
   
   <author>
@@ -14,6 +14,126 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java中xml文件解析分析</title>
+    <link href="https://stevenxiaoming.github.io/2017/03/29/Java%E4%B8%ADxml%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90%E5%88%86%E6%9E%90/"/>
+    <id>https://stevenxiaoming.github.io/2017/03/29/Java中xml文件解析分析/</id>
+    <published>2017-03-29T12:56:17.000Z</published>
+    <updated>2017-03-29T13:42:32.001Z</updated>
+    
+    <content type="html"><![CDATA[<p>java中目前有四种解析xml文件的解析方式：DOM、SAX、JDOM、DOM4J</p>
+<h2 id="解析方式分析"><a href="#解析方式分析" class="headerlink" title="解析方式分析"></a>解析方式分析</h2><p>基础方法：</p>
+<ul>
+<li>DOM: 平台无关的官方解析方式</li>
+<li>SAX: 基于事件驱动的解析方式</li>
+</ul>
+<p>扩展方法（只有java平台可以使用）：</p>
+<ul>
+<li>JDOM：</li>
+<li>DOM4J：</li>
+</ul>
+<h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>DOM解析时，一次性将xml文件全部加入内存</p>
+<p><strong>优点</strong></p>
+<ul>
+<li>树结构，直观，容易编写</li>
+<li>树结构保存在内存中，便于修改</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>内存消耗大，影响解析性能，内存容易溢出</li>
+</ul>
+<hr>
+<h3 id="SAX"><a href="#SAX" class="headerlink" title="SAX"></a>SAX</h3><p>逐标签解析</p>
+<p><strong>优点</strong></p>
+<ul>
+<li>事件驱动，内存消耗小</li>
+<li>仅适用于处理xml数据</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>不易编码</li>
+<li>难以同时访问多处不同数据</li>
+</ul>
+<hr>
+<h3 id="JDOM"><a href="#JDOM" class="headerlink" title="JDOM"></a>JDOM</h3><ul>
+<li>使用具体类而不用接口</li>
+<li>API大量使用Collections类</li>
+</ul>
+<hr>
+<h3 id="DOM4J"><a href="#DOM4J" class="headerlink" title="DOM4J"></a>DOM4J</h3><ul>
+<li>使用接口和抽象基本方法</li>
+<li>JDOM智能分支</li>
+<li>性能优异、灵活性好</li>
+</ul>
+<hr>
+<h2 id="具体性能分析"><a href="#具体性能分析" class="headerlink" title="具体性能分析"></a>具体性能分析</h2><p>根据文件大小不同进行性能分析，对同一文件进行完全解析的时间进行比较（单位ms）</p>
+<h4 id="xml大小为-1kb"><a href="#xml大小为-1kb" class="headerlink" title="xml大小为 1kb"></a>xml大小为 1kb</h4><pre><code>DOM性能：43
+SAX性能：6
+JDOM性能：48
+DOM4J性能：45
+</code></pre><h4 id="xml大小为-100kb"><a href="#xml大小为-100kb" class="headerlink" title="xml大小为 100kb"></a>xml大小为 100kb</h4><pre><code>DOM性能：89
+SAX性能：32
+JDOM性能：109
+DOM4J性能：74
+</code></pre><h4 id="xml大小为-600kb"><a href="#xml大小为-600kb" class="headerlink" title="xml大小为 600kb"></a>xml大小为 600kb</h4><pre><code>DOM性能：115
+SAX性能：54
+JDOM性能：209
+DOM4J性能：149
+</code></pre><h4 id="xml大小为-1MB"><a href="#xml大小为-1MB" class="headerlink" title="xml大小为 1MB"></a>xml大小为 1MB</h4><pre><code>DOM性能：162
+SAX性能：80
+JDOM性能：205
+DOM4J性能：131
+</code></pre><h4 id="xml大小为-5MB（测试结果不稳定）"><a href="#xml大小为-5MB（测试结果不稳定）" class="headerlink" title="xml大小为 5MB（测试结果不稳定）"></a>xml大小为 5MB（测试结果不稳定）</h4><pre><code>性能测试结果1：
+    DOM性能：693
+    SAX性能：142
+    JDOM性能：529
+    DOM4J性能：453
+性能测试结果2：
+    DOM性能：772
+    SAX性能：161
+    JDOM性能：496
+    DOM4J性能：546
+性能测试结果3：
+    DOM性能：674
+    SAX性能：155
+    JDOM性能：414
+    DOM4J性能：506
+性能测试结果4：
+    DOM性能：677
+    SAX性能：169
+    JDOM性能：447
+    DOM4J性能：438
+</code></pre><p>综上，SAX对全文件的解析速度最快，JDOM的解析速度最慢，而DOM和DOM4J的解析性能取决于文件，当文件大小达到1MB以上时，DOM4J的分析性能优于DOM，因此根据文件大小和具体使用情况选择不同的解析方式。</p>
+<p>当文件大小达到5MB时，性能测试结果浮动偏差较大，DOM、JDOM、DOM4J这三种解析方式的性能强弱处于不稳定状态，虽然每次测试的文件都是一样的，但是为什么会发生这种情况还不太了解。</p>
+<h3 id="解析方式选择"><a href="#解析方式选择" class="headerlink" title="解析方式选择"></a>解析方式选择</h3><ol>
+<li><p>在网站开发中，如果发布一条公告使用xml文件格式，可以采用DOM解析。公告的内容较少，所以文件大小不大，并且对不同节点进行修改也较为方便。</p>
+</li>
+<li><p>选择性数据读取时，不适合选择SAX解析方式，如根据某一产品型号，获取其名称等。</p>
+</li>
+<li><p>对于复杂的xml文档适合采用DOM4J。</p>
+</li>
+</ol>
+<blockquote>
+<p>Hibernate的xml解析方式采用的是DOM4J</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;java中目前有四种解析xml文件的解析方式：DOM、SAX、JDOM、DOM4J&lt;/p&gt;
+&lt;h2 id=&quot;解析方式分析&quot;&gt;&lt;a href=&quot;#解析方式分析&quot; class=&quot;headerlink&quot; title=&quot;解析方式分析&quot;&gt;&lt;/a&gt;解析方式分析&lt;/h2&gt;&lt;p&gt;基础方法：
+    
+    </summary>
+    
+      <category term="学习STUDY" scheme="https://stevenxiaoming.github.io/categories/%E5%AD%A6%E4%B9%A0STUDY/"/>
+    
+    
+      <category term="java" scheme="https://stevenxiaoming.github.io/tags/java/"/>
+    
+      <category term="xml" scheme="https://stevenxiaoming.github.io/tags/xml/"/>
+    
+  </entry>
   
   <entry>
     <title>专业课软件下载</title>
