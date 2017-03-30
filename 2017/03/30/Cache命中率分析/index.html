@@ -10,7 +10,7 @@
     
     <title>
         
-            标签: java | 
+            Cache命中率分析 | 
         
         Steven
     </title>
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Steven Ming">
     <meta name="description" content="Here is a fighting Steven called Ming.">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,系统结构,cache,valgrind">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -48,9 +48,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://stevenxiaoming.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: java | Steven">
+    <meta property="og:title" content="Cache命中率分析 | Steven">
     <meta property="og:description" content="Here is a fighting Steven called Ming.">
-    
+    <meta property="og:article:tag" content="系统结构"> <meta property="og:article:tag" content="cache"> <meta property="og:article:tag" content="valgrind"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -204,165 +204,335 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
 
-    <!-- Normal Post -->
-    
-        
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Software"><span class="post-toc-number">1.</span> <span class="post-toc-text">Software</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Introduction"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Introduction</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Download"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Download</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Documentation"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Documentation</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装与配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装与配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试"><span class="post-toc-number">3.</span> <span class="post-toc-text">测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他"><span class="post-toc-number">4.</span> <span class="post-toc-text">其他</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/03/29/Java中xml文件解析分析/">Java中xml文件解析分析</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            java中目前有四种解析xml文件的解析方式：DOM、SAX、JDOM、DOM4J
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/03/29/Java中xml文件解析分析/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Steven Ming's avatar">
-            </div>
-            <div>
-                <strong>Steven Ming</strong>
-                <span>3月 29, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-			<!-- Tags -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/tags/java/">java</a>, <a class="post_category-link" href="/tags/xml/">xml</a>
-            </span>
-			
-			<span>&nbsp;|</span>
-			
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_tag-link" href="/categories/学习STUDY/">学习STUDY</a>
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-        
-    
-        
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/03/26/JVM垃圾回收方式/">JVM垃圾回收方式</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            ...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/03/26/JVM垃圾回收方式/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Steven Ming's avatar">
-            </div>
-            <div>
-                <strong>Steven Ming</strong>
-                <span>3月 26, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-			<!-- Tags -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/tags/java/">java</a>
-            </span>
-			
-			<span>&nbsp;|</span>
-			
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_tag-link" href="/categories/学习STUDY/">学习STUDY</a>
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-        
-    
-
-    
-
-    
-        <script>
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 8; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')')
-
-        locatePost = locatePost.next();
-    }
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Cache命中率分析
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Steven Ming</strong>
+        <span>3月 30, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/cache/">cache</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/valgrind/">valgrind</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/系统结构/">系统结构</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Cache命中率分析&url=https://stevenxiaoming.github.io//2017/03/30/Cache命中率分析/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Cache命中率分析&url=https://stevenxiaoming.github.io//2017/03/30/Cache命中率分析/index.html&via=Steven Ming" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://stevenxiaoming.github.io//2017/03/30/Cache命中率分析/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://stevenxiaoming.github.io//2017/03/30/Cache命中率分析/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>对linux系统的Cache命中率进行分析，使用的是Ubuntu-16.04.2-desktop-amd64系统。<br><a href="http://releases.ubuntu.com/16.04.2/ubuntu-16.04.2-desktop-amd64.iso" target="_blank" rel="external">Ubuntu-16.04.2-desktop-amd64 下载地址</a></p>
+<h2 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h2><p><a href="http://valgrind.org/" target="_blank" rel="external">Valgrind</a></p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Valgrind is an instrumentation framework for building dynamic analysis tools.<br>There are Valgrind tools that can automatically detect many <strong>memory management</strong> and threading bugs, and profile your programs in detail.<br>You can also use Valgrind to build new tools.</p>
+<h3 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h3><p>Current Release: <a href="http://valgrind.org/downloads/valgrind-3.12.0.tar.bz2" target="_blank" rel="external">Valgrind 3.12.0</a><br>Release on 20 October 2016</p>
+<h3 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h3><p><a href="http://valgrind.org/docs/manual/QuickStart.html" target="_blank" rel="external">The Valgrind Quick Start Guide</a> Release 3.12.0 20 October 2016<br><a href="http://valgrind.org/docs/manual/manual.html" target="_blank" rel="external">Valgrind User Manual</a> Release 3.12.0 20 October 2016</p>
+<h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><blockquote>
+<p>配置中需要使用autoconf工具<br>安装方法：</p>
+<ul>
+<li>在终端输入 sudo apt-get install autoconf</li>
+<li>输入密码</li>
+<li>Do you want to continue?[Y/n]  输入Y</li>
+<li>完成后，输入 which autoconf 检查是否安装成功</li>
+</ul>
+</blockquote>
+<ul>
+<li>下载 <a href="http://valgrind.org/downloads/valgrind-3.12.0.tar.bz2" target="_blank" rel="external">Valgrind 3.12.0</a></li>
+<li>解压 <strong>valgrind-3.12.0.tar.bz2</strong><pre><code>~$ tar -xjvf valgrind-3.12.0.tar.bz2
+</code></pre></li>
+<li>解压完成后，进入文件根目录<pre><code>~$ cd valgrind-3.12.0
+</code></pre></li>
+<li>运行./autogen.sh来设置环境（需要autoconf工具）<pre><code>~/valgrind-3.12.0$ ./autogen.sh
+</code></pre></li>
+<li>运行./configure来生成Makefile文件，后面的参数是安装路径（约1分钟）<pre><code>~/valgrind-3.12.0$ ./configure --prefix=/usr/local/valgrind
+</code></pre></li>
+<li>运行 make 进行编译<pre><code>~/valgrind-3.12.0$ make
+</code></pre></li>
+<li>运行 sudo make install，输入密码后进行编译<pre><code>~/valgrind-3.12.0$ sudo make install
+</code></pre></li>
+</ul>
+<p>安装完成，但是为了使用方便，不用每次都到安装目录中去，所以对环境变量Path进行配置</p>
+<ul>
+<li>在Terminal输入<pre><code>~$ sudo gedit ~/.bashrc
+</code></pre></li>
+<li>输入密码，打开文件修改，在最后加入<pre><code>export PATH=${PATH}:/usr/local/valgrind/bin
+</code></pre></li>
+<li>更新<pre><code>~$ sudo source ~/.bashrc
+</code></pre></li>
+<li>使用测试命令进行测试<pre><code>~$ valgrind ls -l
+</code></pre></li>
+</ul>
+<p>至此，所有的安装和配置全部完成。耗时约在10-15分钟。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>编写一个测试程序（C语言），代码如下</p>
+<pre class="line-numbers language-C"><code class="language-C">    #include <stdio.h>
+    #include <stdlib.h>
+
+    #define SIZE 100
+
+    int main()
+    {
+        int array[SIZE][SIZE] = {0};
+        int i,j;
+        for (i = 0; i < SIZE; ++i) {
+            for (j = 0; j < SIZE; ++j) {
+                array[i][j] = i + j;
+            }
+        }
+        return 0;
+    }
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>编译测试程序，并使用valgrind测试命中率</p>
+<pre><code>~$ gcc -o test cacheTest1.c
+~$ valgrind --tool=cachegrind test
+</code></pre><p>测试结果如下：</p>
+<blockquote>
+<p>==23900== Cachegrind, a cache and branch-prediction profiler<br>==23900== Copyright (C) 2002-2015, and GNU GPL’d, by Nicholas Nethercote et al.<br>==23900== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info<br>==23900== Command: test<br>==23900==<br>–23900– warning: L3 cache found, using its data for the LL simulation.<br>==23900==<br>==23900== I   refs:      199,256<br>==23900== I1  misses:      1,040<br>==23900== LLi misses:      1,016<br>==23900== I1  miss rate:    0.52%<br>==23900== LLi miss rate:    0.51%<br>==23900==<br>==23900== D   refs:       65,643  (50,550 rd   + 15,093 wr)<br>==23900== D1  misses:      3,301  ( 2,682 rd   +    619 wr)<br>==23900== LLd misses:      2,638  ( 2,079 rd   +    559 wr)<br>==23900== D1  miss rate:     5.0% (   5.3%     +    4.1%  )<br>==23900== LLd miss rate:     4.0% (   4.1%     +    3.7%  )<br>==23900==<br>==23900== LL refs:         4,341  ( 3,722 rd   +    619 wr)<br>==23900== LL misses:       3,654  ( 3,095 rd   +    559 wr)<br>==23900== LL miss rate:      1.4% (   1.2%     +    3.7%  )</p>
+</blockquote>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>查看系统cache容量</p>
+<pre><code>~$ cat /sys/devices/system/cpu/cpu0/cache/index0/size
+</code></pre><p>其中 index0 可替换为index1-3; size 可替换为level, type</p>
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>level</th>
+<th>type</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>Data</td>
+<td>32K</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>Instruction</td>
+<td>32K</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>Unified</td>
+<td>256K</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>Unified</td>
+<td>6144K</td>
+</tr>
+</tbody>
+</table>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/03/29/Java中xml文件解析分析/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -554,6 +724,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
