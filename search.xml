@@ -6,11 +6,197 @@
     <entry>
       <title><![CDATA[科学学习计算机系统结构]]></title>
       <url>https://stevenxiaoming.github.io/2017/04/09/%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</url>
-      <content type="html"><![CDATA[<h2 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h2><h3 id="1-1-洋葱模型"><a href="#1-1-洋葱模型" class="headerlink" title="1.1 洋葱模型"></a>1.1 洋葱模型</h3><p><img src="/2017/04/09/科学学习计算机系统结构/1-1.jpg" alt="洋葱模型"></p>
-<h3 id="1-2-处理机模型"><a href="#1-2-处理机模型" class="headerlink" title="1.2 处理机模型"></a>1.2 处理机模型</h3><p><img src="/2017/04/09/科学学习计算机系统结构/1-2.jpg" alt="处理机模型"></p>
-<h3 id="1-3-Amdahl定律"><a href="#1-3-Amdahl定律" class="headerlink" title="1.3 Amdahl定律"></a>1.3 Amdahl定律</h3><p>系统中某部件因采用某种更快执行方法后，整个系统性能的提高与这种执行方式使用频率或占总执行时间的比例有关。</p>
+      <content type="html"><![CDATA[<h2 id="第1-3周"><a href="#第1-3周" class="headerlink" title="第1~3周"></a>第1~3周</h2><h3 id="洋葱模型"><a href="#洋葱模型" class="headerlink" title="洋葱模型"></a>洋葱模型</h3><p><img src="/2017/04/09/科学学习计算机系统结构/1-1.jpg" alt="洋葱模型"></p>
+<h3 id="CPU结构功能图"><a href="#CPU结构功能图" class="headerlink" title="CPU结构功能图"></a>CPU结构功能图</h3><p><img src="/2017/04/09/科学学习计算机系统结构/1-2.jpg" alt="CPU结构功能图"></p>
+<h3 id="二八定律"><a href="#二八定律" class="headerlink" title="二八定律"></a>二八定律</h3><p>计算机80%的运行时间，用于执行20%的指令</p>
+<h3 id="Amdahl定律"><a href="#Amdahl定律" class="headerlink" title="Amdahl定律"></a>Amdahl定律</h3><p>系统中某部件因采用某种更快执行方法后，整个系统性能的提高与这种执行方式使用频率或占总执行时间的比例有关。</p>
 <p>Amdahl定律定义了加速比：<br><img src="/2017/04/09/科学学习计算机系统结构/1-3.jpg" alt="处理机模型"></p>
 <p>加速比与两个因素有关：<br><img src="/2017/04/09/科学学习计算机系统结构/1-4.jpg" alt="处理机模型"></p>
+<h3 id="CPU中的主要寄存器"><a href="#CPU中的主要寄存器" class="headerlink" title="CPU中的主要寄存器"></a>CPU中的主要寄存器</h3><h4 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h4><h5 id="数据寄存器"><a href="#数据寄存器" class="headerlink" title="数据寄存器"></a>数据寄存器</h5><table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>全称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AX</td>
+<td>Accumulator</td>
+<td>累加寄存器，也称之为累加器</td>
+</tr>
+<tr>
+<td>BX</td>
+<td>Base</td>
+<td>基地址寄存器</td>
+</tr>
+<tr>
+<td>CX</td>
+<td>Count</td>
+<td>计数器寄存器</td>
+</tr>
+<tr>
+<td>DX</td>
+<td>Data</td>
+<td>数据寄存器</td>
+</tr>
+</tbody>
+</table>
+<h5 id="指针寄存器"><a href="#指针寄存器" class="headerlink" title="指针寄存器"></a>指针寄存器</h5><table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>全称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SP</td>
+<td>Stack Pointer</td>
+<td>堆栈指针寄存器</td>
+</tr>
+<tr>
+<td>BP</td>
+<td>Base Pointer</td>
+<td>基指针寄存器</td>
+</tr>
+</tbody>
+</table>
+<h5 id="变址寄存器"><a href="#变址寄存器" class="headerlink" title="变址寄存器"></a>变址寄存器</h5><table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>全称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SI</td>
+<td>Source Index</td>
+<td>源变址寄存器</td>
+</tr>
+<tr>
+<td>DI</td>
+<td>Destination Index</td>
+<td>目的变址寄存器</td>
+</tr>
+</tbody>
+</table>
+<h3 id="控制寄存器"><a href="#控制寄存器" class="headerlink" title="控制寄存器"></a>控制寄存器</h3><table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>全称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP</td>
+<td>Instruction Pointer</td>
+<td>指令指针寄存器</td>
+</tr>
+</tbody>
+</table>
+<h4 id="FLAG标志寄存器"><a href="#FLAG标志寄存器" class="headerlink" title="FLAG标志寄存器"></a>FLAG标志寄存器</h4><table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>全称</th>
+<th>=1</th>
+<th>=0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CF</td>
+<td>进位标志Carry Flag</td>
+<td>CY/Carry/进位</td>
+<td>NC/No Carry/无进位</td>
+</tr>
+<tr>
+<td>PF</td>
+<td>奇偶标志Parity Flag</td>
+<td>PE/Parity Even/偶</td>
+<td>PO/Parity Odd/奇</td>
+</tr>
+<tr>
+<td>AF</td>
+<td>辅助进位标志Auxiliary Carry Flag</td>
+<td>AC/Auxiliary Carry/进位</td>
+<td>NA/No Auxiliary Carry/无进位</td>
+</tr>
+<tr>
+<td>ZF</td>
+<td>零标志Zero Flag</td>
+<td>ZR/Zero/等于零</td>
+<td>NZ/Not Zero/不等于零</td>
+</tr>
+<tr>
+<td>SF</td>
+<td>符号标志Sign Flag</td>
+<td>NG/Negative/负</td>
+<td>PL/Positive/非负</td>
+</tr>
+<tr>
+<td>TF</td>
+<td>跟踪标志Trace Flag</td>
+</tr>
+<tr>
+<td>IF</td>
+<td>中断标志Interrupt Flag</td>
+<td>EI/Enable Interrupt/允许</td>
+<td>DI/Disable Interrupt/禁止</td>
+</tr>
+<tr>
+<td>DF</td>
+<td>方向标志Direction Flag</td>
+<td>DN/Down/减少</td>
+<td>UP/增加</td>
+</tr>
+<tr>
+<td>OF</td>
+<td>溢出标志Overflow Flag</td>
+<td>OV/Overflow/溢出</td>
+<td>NV/Not Overflow/未溢出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h3><table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>全称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CS</td>
+<td>Code Segment</td>
+<td>代码段寄存器</td>
+</tr>
+<tr>
+<td>DS</td>
+<td>Data Segment</td>
+<td>数据段寄存器</td>
+</tr>
+<tr>
+<td>SS</td>
+<td>Stack Segment</td>
+<td>堆栈段寄存器</td>
+</tr>
+<tr>
+<td>ES</td>
+<td>Extra Segment</td>
+<td>附加段寄存器</td>
+</tr>
+</tbody>
+</table>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>指令优化：Huffman（哈夫曼）树</p>
 ]]></content>
       
         <categories>
@@ -31,7 +217,7 @@
     <entry>
       <title><![CDATA[Cache命中率分析]]></title>
       <url>https://stevenxiaoming.github.io/2017/03/30/Cache%E5%91%BD%E4%B8%AD%E7%8E%87%E5%88%86%E6%9E%90/</url>
-      <content type="html"><![CDATA[<p>对linux系统的Cache命中率进行分析，使用的是Ubuntu-16.04.2-desktop-amd64系统。<br><a href="http://releases.ubuntu.com/16.04.2/ubuntu-16.04.2-desktop-amd64.iso" target="_blank" rel="external">Ubuntu-16.04.2-desktop-amd64 下载地址</a></p>
+      <content type="html"><![CDATA[<p>对Linux系统的Cache命中率进行分析，使用的是Ubuntu-16.04.2-desktop-amd64系统。<br><a href="http://releases.ubuntu.com/16.04.2/ubuntu-16.04.2-desktop-amd64.iso" target="_blank" rel="external">Ubuntu-16.04.2-desktop-amd64 下载地址</a></p>
 <h2 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h2><p><a href="http://valgrind.org/" target="_blank" rel="external">Valgrind</a></p>
 <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Valgrind is an instrumentation framework for building dynamic analysis tools.<br>There are Valgrind tools that can automatically detect many <strong>memory management</strong> and threading bugs, and profile your programs in detail.<br>You can also use Valgrind to build new tools.</p>
 <h3 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h3><p>Current Release: <a href="http://valgrind.org/downloads/valgrind-3.12.0.tar.bz2" target="_blank" rel="external">Valgrind 3.12.0</a><br>Release on 20 October 2016</p>
@@ -364,70 +550,6 @@ DOM4J性能：131
         <tags>
             
             <tag> java </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[日记拼图1]]></title>
-      <url>https://stevenxiaoming.github.io/2017/03/24/%E6%97%A5%E8%AE%B0%E6%8B%BC%E5%9B%BE1/</url>
-      <content type="html"><![CDATA[<h1 id="私有文章，暂不公开"><a href="#私有文章，暂不公开" class="headerlink" title="私有文章，暂不公开"></a>私有文章，暂不公开</h1><p>冬季学期一结束，小日子就结束啦！下学期好好做人。</p>
-<p>新的学期，每天除了正常学习，就是完成每天的小目标，但愿能够在7月前拿到人生中的第一个offer吧！</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 生活LIFE </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 日记 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[长大]]></title>
-      <url>https://stevenxiaoming.github.io/2017/03/24/%E9%95%BF%E5%A4%A7/</url>
-      <content type="html"><![CDATA[<p>寒假，每天晚睡早起，整天趴在电脑前，做着自己的项目，再也没有晚睡晚起，吃喝玩乐来度过整个假期了……</p>
-<p>两个星期前的考试周，面对着专业课考试已经毫无感受，不再有往日的紧迫感，也没有往日的勤奋预习……</p>
-<p>考试周的时候，周围的同学都开始找实习了，想想也已经大三了，还有一个学期就结束了。曾经觉得实习离我还很遥远，而现在就发生在自己身上。</p>
-<p>在春招的茫茫人海中，我也成为了其中的一员，拿着一纸简历，寻找着合适的实习岗位……或许只是为了寻找一份安慰和心理平衡，能和其他人一样找到一份实习，然后花自己实习赚来的钱出去玩！</p>
-<p>大概就这样长大了吧。。。。。。</p>
-<hr>
-<p>前几天和小伙伴聊起了童年的那些事儿，现在想起来慢慢的都是回忆。<br>那时的输入法智能ABC，我还记得我的名字序列是9 1 5；<br>那时的动画片没有喜洋洋和灰太狼，只有蓝猫和淘气；<br>那时的打字练习玩的是警察抓小偷，可是经常被逮到；<br>那时的游戏只玩过超级玛丽，每次玩到第四关就进入了无限循环，怎么都过不去……</p>
-<p>我打开电脑的输入法时，只有更智能的搜狗输入法，偶尔还能在学校的机房看到智能ABC；<br>在网上找动画的时候，那些经典的动画全不见踪影，想起当年过节的时候，都是看喜洋洋的电影才知道是什么年，也不知道是什么时候，喜洋洋就不出电影版了；<br>作为一个程序猿，每天的打字练习就是码代码，拼的手速，再也没有以前练习时打的精彩的故事；<br>现在的游戏动不动就是几G或者10+G的大型游戏，使用更优秀的引擎，追求着更高的画质。</p>
-<hr>
-<p>当我开始书写我的简历的时候，才发现有如此多的空白，我竟然没有什么可以去写，不仅承受着英语的硬伤，还有技术的不精……</p>
-<p>学校的知识已经不能满足时代的需求。为了一份实习，或者是一种不愿输给身边的人的攀比心吧。</p>
-<p>电脑中的游戏一个接一个的消失，取代的是一段又一段的代码，一个又一个的项目；网页收藏夹里的游戏攻略，变成了实习攻略和在线编程；书架上的教科书，逐渐被一本本的专业书所取代……</p>
-<p>从父母看管着学习的中小学，只为考上一个好大学；<br>到自由放纵的大学，只为体验自由自在的生活；<br>再到自己想要学习，只是为了能够在简历上多添一笔……</p>
-<hr>
-<p>看到别人已经在实习面试，有的甚至已经拿到offer，不甘心自己还和往常一样堕落，开始了好好学习的计划（<del>flag</del>）。</p>
-<p>编程、看书、做项目，一个又一个的计划摆上了日程表，6月份还有第N次的六级考，逼着自己去学，不为其他的，就为自己。</p>
-<p>以前的计划就如同摆设一样（<del>flag倒</del>），只是提醒自己有这样一个美好的想法，反正还有下次。现在留给自己的大概就只有这一次机会，几个月的时间罢了。</p>
-<p>不逼一下自己，怎么知道自己可以有多可怕。</p>
-<hr>
-<p>看了上次的那篇推文里讲到了年少的学生时代，回想起我年少的学生时代，大概就是与电脑为伴吧，玩与学都离不开它。而现在给我留下的也只剩下一个打不开的U盘和一个读不出的硬盘了……我曾想在未来的某一天去修复他们，看看那时的自己在里面到底存了什么样的故事，但那一天却不知道什么时候到来。</p>
-<hr>
-<p>长大了，那就成熟一点，把幼稚藏起来，看看自己的真面目吧。</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 生活LIFE </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 日记 </tag>
             
         </tags>
         
