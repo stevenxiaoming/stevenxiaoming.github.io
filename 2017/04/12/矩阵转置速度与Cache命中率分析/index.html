@@ -10,7 +10,7 @@
     
     <title>
         
-            Me | 
+            矩阵转置速度与Cache命中率分析 | 
         
         Steven
     </title>
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Steven Ming">
     <meta name="description" content="Here is a fighting Steven called Ming.">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,cache,矩阵转置,cache命中率">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -48,9 +48,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://stevenxiaoming.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Me | Steven">
+    <meta property="og:title" content="矩阵转置速度与Cache命中率分析 | Steven">
     <meta property="og:description" content="Here is a fighting Steven called Ming.">
-    
+    <meta property="og:article:tag" content="cache"> <meta property="og:article:tag" content="矩阵转置"> <meta property="og:article:tag" content="cache命中率"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -211,6 +211,41 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#虚拟机配置"><span class="post-toc-number">1.</span> <span class="post-toc-text">虚拟机配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#比较矩阵转置速度"><span class="post-toc-number">2.</span> <span class="post-toc-text">比较矩阵转置速度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一组"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">第一组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二组"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">第二组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一组-1"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">第一组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二组-1"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">第二组</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
 
 <!-- Layouts -->
 
@@ -236,7 +271,7 @@
         
     
             <p class="article-headline-p">
-                Me
+                矩阵转置速度与Cache命中率分析
             </p>
         </div>
 
@@ -255,7 +290,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Steven Ming</strong>
-        <span>3月 22, 2017</span>
+        <span>4月 12, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -279,7 +314,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/cache/">cache</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/cache命中率/">cache命中率</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/矩阵转置/">矩阵转置</a>
     </ul>
     
 
@@ -306,7 +341,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Me&url=https://stevenxiaoming.github.io//about/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=矩阵转置速度与Cache命中率分析&url=https://stevenxiaoming.github.io//2017/04/12/矩阵转置速度与Cache命中率分析/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -315,7 +350,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Me&url=https://stevenxiaoming.github.io//about/index.html&via=Steven Ming" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=矩阵转置速度与Cache命中率分析&url=https://stevenxiaoming.github.io//2017/04/12/矩阵转置速度与Cache命中率分析/index.html&via=Steven Ming" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -324,7 +359,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://stevenxiaoming.github.io//about/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://stevenxiaoming.github.io//2017/04/12/矩阵转置速度与Cache命中率分析/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -333,7 +368,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://stevenxiaoming.github.io//about/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://stevenxiaoming.github.io//2017/04/12/矩阵转置速度与Cache命中率分析/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -356,10 +391,455 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>一只不能吃，不能喝，瘦的跟排骨似的程序猿；<br>不管怎么吃，怎么喝都长不胖。</p>
-<p>一只不爱运动不爱睡，成天也不知道在做什么的大学森；<br>写写代码，看看网课，有时玩两局红管；<br>自己做过小项目玩，但是最终都没有上线很久。</p>
-<p>一只不会浪，也不宅的理工男；<br>能和熟悉的人畅心所谈，只和熟识的人一起玩耍。</p>
-<p>【此页无图，没有自拍，没有他拍，也没有偷拍<em>(:зゝ∠)</em>】</p>
+        <p>进行矩阵转置时，512大小的矩阵和513大小的矩阵速度，哪个更快？1024和1025呢？</p>
+<p>按照理论，513的矩阵比512的矩阵快，1025的矩阵比1024的矩阵快。所以做几个实验来验证看看。</p>
+<h2 id="虚拟机配置"><a href="#虚拟机配置" class="headerlink" title="虚拟机配置"></a>虚拟机配置</h2><p>由于程序是在虚拟机上运行，与主机测试的结果可能有出入。</p>
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>level</th>
+<th>type</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>Data</td>
+<td>32K</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>Instruction</td>
+<td>32K</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>Unified</td>
+<td>256K</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>Unified</td>
+<td>6144K</td>
+</tr>
+</tbody>
+</table>
+<h2 id="比较矩阵转置速度"><a href="#比较矩阵转置速度" class="headerlink" title="比较矩阵转置速度"></a>比较矩阵转置速度</h2><p>编写矩阵转置程序（C语言）</p>
+<pre class="line-numbers language-c"><code class="language-c">    <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;time.h></span></span>
+    <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+    <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/time.h></span></span>
+
+    <span class="token macro property">#<span class="token directive keyword">define</span> SIZE 512 </span><span class="token comment" spellcheck="true">// 可以设置为任一大小</span>
+    <span class="token keyword">int</span> mat<span class="token punctuation">[</span>SIZE<span class="token punctuation">]</span><span class="token punctuation">[</span>SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token macro property">#<span class="token directive keyword">define</span> TIMES 1000</span>
+
+    <span class="token keyword">long</span> <span class="token function">getCurrentTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">struct</span> timeval tv<span class="token punctuation">;</span>
+        <span class="token function">gettimeofday</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>tv<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> tv<span class="token punctuation">.</span>tv_sec <span class="token operator">*</span> <span class="token number">1000000</span> <span class="token operator">+</span> tv<span class="token punctuation">.</span>tv_usec<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">void</span> <span class="token function">transpose</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> SIZE<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> SIZE<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">int</span> tmp <span class="token operator">=</span> mat<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                mat<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> mat<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                mat<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> SIZE<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> SIZE<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                mat<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> i <span class="token operator">+</span> j<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">long</span> start<span class="token punctuation">,</span> end<span class="token punctuation">;</span>
+        start <span class="token operator">=</span> <span class="token function">getCurrentTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> TIMES<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">transpose</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        end <span class="token operator">=</span> <span class="token function">getCurrentTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">double</span> t <span class="token operator">=</span> <span class="token punctuation">(</span>end <span class="token operator">-</span> start<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000.0</span><span class="token punctuation">;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%f\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>一共编写了2组测试样例，每组3个程序，矩阵大小为</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一组</td>
+<td>511</td>
+<td>512</td>
+<td>513</td>
+</tr>
+<tr>
+<td>第二组</td>
+<td>1023</td>
+<td>1024</td>
+<td>1025</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>实验测试样例最大只选取了2^10级，当级数达到2^11级时，cache命中率会报错</p>
+</blockquote>
+<p>在每个程序中，都会将矩阵转置1000次，并求平均值。</p>
+<p>执行多次程序后再求平均值，得到结果如下（单位：微秒）：</p>
+<h3 id="第一组"><a href="#第一组" class="headerlink" title="第一组"></a>第一组</h3><table>
+<thead>
+<tr>
+<th>次数</th>
+<th>511</th>
+<th>512</th>
+<th>513</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1352.858</td>
+<td>1694.649</td>
+<td>2784.602</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1354.494</td>
+<td>1675.293</td>
+<td>2761.037</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1346.760</td>
+<td>1672.241</td>
+<td>2824.607</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1356.021</td>
+<td>1680.417</td>
+<td>3023.677</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1393.850</td>
+<td>1790.785</td>
+<td>2670.411</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1364.908</td>
+<td>1670.403</td>
+<td>1869.946</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1410.571</td>
+<td>1660.457</td>
+<td>1382.319</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1429.591</td>
+<td>1654.826</td>
+<td>1344.526</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1406.000</td>
+<td>1661.112</td>
+<td>1341.535</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1483.621</td>
+<td>1724.635</td>
+<td>1337.413</td>
+</tr>
+<tr>
+<td>平均</td>
+<td>1389.867</td>
+<td>1688.482</td>
+<td>2134.007</td>
+</tr>
+</tbody>
+</table>
+<p>附实验截图：<br><img src="/2017/04/12/矩阵转置速度与Cache命中率分析/1.jpg" alt="513异常测试结果"></p>
+<h3 id="第二组"><a href="#第二组" class="headerlink" title="第二组"></a>第二组</h3><table>
+<thead>
+<tr>
+<th>次数</th>
+<th>511</th>
+<th>512</th>
+<th>513</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>12564.089</td>
+<td>15739.079</td>
+<td>12882.077</td>
+</tr>
+<tr>
+<td>2</td>
+<td>10887.729</td>
+<td>15643.421</td>
+<td>13102.483</td>
+</tr>
+<tr>
+<td>3</td>
+<td>11521.719</td>
+<td>16257.431</td>
+<td>13011.284</td>
+</tr>
+<tr>
+<td>4</td>
+<td>12407.815</td>
+<td>16903.234</td>
+<td>13221.209</td>
+</tr>
+<tr>
+<td>平均</td>
+<td>11845.338</td>
+<td>16135.791</td>
+<td>13054.263</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>第一组实验中结果与理论明显不符，513大小的矩阵置换最初用时比512的快了近50%，但是次数增加后所花的时间越来越少？？？<br>第二组实验由于耗时过长，且每一组的结果基本稳定，4组实验结果与理论结果相符，因此没有做过多的实验。</p>
+</blockquote>
+<p>由于第一组实验的严重误差，所以决定对513大小的矩阵程序再运行，查看结果。<br><img src="/2017/04/12/矩阵转置速度与Cache命中率分析/2.jpg" alt="513异常测试结果"></p>
+<p>最后求得平均值为 1380.944， 略快于511大小的矩阵，并且这次实验的结果较为稳定。</p>
+<hr>
+<p>接下来使用相同的代码，做Cache命中率分析，使用软件为Valgrind。每组实验采用了千次循环，在程序本身运行的前提下，又加入了动态测试工具，<strong>耗时极长</strong>。</p>
+<h3 id="第一组-1"><a href="#第一组-1" class="headerlink" title="第一组"></a>第一组</h3><table>
+<thead>
+<tr>
+<th>#</th>
+<th>511</th>
+<th>512</th>
+<th>513</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>10,713,628,328</td>
+<td>8,657,917,403</td>
+<td>10,797,640,986</td>
+</tr>
+<tr>
+<td>I1 misses</td>
+<td>1,004</td>
+<td>1,003</td>
+<td>1,002</td>
+</tr>
+<tr>
+<td>LLi</td>
+<td>989</td>
+<td>988</td>
+<td>987</td>
+</tr>
+<tr>
+<td>I1 miss rate</td>
+<td>0.000009371%</td>
+<td>0.000011585%</td>
+<td>0.000009280%</td>
+</tr>
+<tr>
+<td>LLi miss rate</td>
+<td>0.000009231%</td>
+<td>0.000011412%</td>
+<td>0.000009141%</td>
+</tr>
+<tr>
+<td>　</td>
+<td>　</td>
+<td>　</td>
+<td>　</td>
+</tr>
+<tr>
+<td>D</td>
+<td>4,181,869,368</td>
+<td>4,198,248,539</td>
+<td>4,214,659,689</td>
+</tr>
+<tr>
+<td>D1 misses</td>
+<td>96,680,808</td>
+<td>278,004,540</td>
+<td>274,575,605</td>
+</tr>
+<tr>
+<td>LLd misses</td>
+<td>18,773</td>
+<td>18,837</td>
+<td>18,901</td>
+</tr>
+<tr>
+<td>D1 miss rate</td>
+<td>2.311904067%</td>
+<td>6.621917150%</td>
+<td>6.514775219%</td>
+</tr>
+<tr>
+<td>LLd miss rate</td>
+<td>0.000448914%</td>
+<td>0.000448687%</td>
+<td>0.000448459%</td>
+</tr>
+<tr>
+<td>　</td>
+<td>　</td>
+<td>　</td>
+<td>　</td>
+</tr>
+<tr>
+<td>LL</td>
+<td>96,681,812</td>
+<td>278,005,543</td>
+<td>274,576,607</td>
+</tr>
+<tr>
+<td>LL misses</td>
+<td>19,762</td>
+<td>19,825</td>
+<td>19,888</td>
+</tr>
+<tr>
+<td>LL miss rate</td>
+<td>0.000131815%</td>
+<td>0.000150942%</td>
+<td>0.000130099%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第二组-1"><a href="#第二组-1" class="headerlink" title="第二组"></a>第二组</h3><table>
+<thead>
+<tr>
+<th>#</th>
+<th>1023</th>
+<th>1024</th>
+<th>1025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>42,930,725,289</td>
+<td>34,623,984,726</td>
+<td>43,098,736,721</td>
+</tr>
+<tr>
+<td>I1 misses</td>
+<td>1,007</td>
+<td>1,004</td>
+<td>1,007</td>
+</tr>
+<tr>
+<td>LLi</td>
+<td>992</td>
+<td>989</td>
+<td>992</td>
+</tr>
+<tr>
+<td>I1 miss rate</td>
+<td>0.000002346%</td>
+<td>0.000002900%</td>
+<td>0.000002336%</td>
+</tr>
+<tr>
+<td>LLi miss rate</td>
+<td>0.000002311%</td>
+<td>0.000002856%</td>
+<td>0.000002302%</td>
+</tr>
+<tr>
+<td>　</td>
+<td>　</td>
+<td>　</td>
+<td>　</td>
+</tr>
+<tr>
+<td>D</td>
+<td>16,755,945,374</td>
+<td>16,788,715,664</td>
+<td>16,821,518,046</td>
+</tr>
+<tr>
+<td>D1 misses</td>
+<td>1,110,984,565</td>
+<td>1,113,157,692</td>
+<td>1,114,442,821</td>
+</tr>
+<tr>
+<td>LLd misses</td>
+<td>67,861</td>
+<td>67,989</td>
+<td>68,117</td>
+</tr>
+<tr>
+<td>D1 miss rate</td>
+<td>6.630390230%</td>
+<td>6.630392189%</td>
+<td>6.625102550%</td>
+</tr>
+<tr>
+<td>LLd miss rate</td>
+<td>0.000404997%</td>
+<td>0.000404968%</td>
+<td>0.000404940%</td>
+</tr>
+<tr>
+<td>　</td>
+<td>　</td>
+<td>　</td>
+<td>　</td>
+</tr>
+<tr>
+<td>LL</td>
+<td>1,110,985,572</td>
+<td>1,113,158,696</td>
+<td>1,114,443,828</td>
+</tr>
+<tr>
+<td>LL misses</td>
+<td>68,853</td>
+<td>68,978</td>
+<td>69,109</td>
+</tr>
+<tr>
+<td>LL miss rate</td>
+<td>0.000113249%</td>
+<td>0.000131322%</td>
+<td>0.000113229%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>数据量极其庞大，仅挑选其中部分进行分析。<br>使用该软件时，每一次测试的结果均相同。</p>
+<p>困了 先睡会儿，起来再研究。。。。。。</p>
+</blockquote>
 
     
 
@@ -388,6 +868,14 @@
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/04/09/科学学习计算机系统结构/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
@@ -585,6 +1073,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
