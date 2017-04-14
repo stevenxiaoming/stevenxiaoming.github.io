@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://stevenxiaoming.github.io/"/>
-  <updated>2017-04-12T16:42:15.632Z</updated>
+  <updated>2017-04-14T08:11:31.044Z</updated>
   <id>https://stevenxiaoming.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://stevenxiaoming.github.io/2017/04/12/%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE%E9%80%9F%E5%BA%A6%E4%B8%8ECache%E5%91%BD%E4%B8%AD%E7%8E%87%E5%88%86%E6%9E%90/"/>
     <id>https://stevenxiaoming.github.io/2017/04/12/矩阵转置速度与Cache命中率分析/</id>
     <published>2017-04-12T14:06:12.000Z</published>
-    <updated>2017-04-12T16:42:15.632Z</updated>
+    <updated>2017-04-14T08:11:31.044Z</updated>
     
     <content type="html"><![CDATA[<p>进行矩阵转置时，512大小的矩阵和513大小的矩阵速度，哪个更快？1024和1025呢？</p>
 <p>按照理论，513的矩阵比512的矩阵快，1025的矩阵比1024的矩阵快。所以做几个实验来验证看看。</p>
@@ -109,7 +109,7 @@
 <table>
 <thead>
 <tr>
-<th>#</th>
+<th>　</th>
 <th>1</th>
 <th>2</th>
 <th>3</th>
@@ -259,14 +259,13 @@
 <blockquote>
 <p>第一组实验中结果与理论明显不符，513大小的矩阵置换最初用时比512的快了近50%，但是次数增加后所花的时间越来越少？？？<br>第二组实验由于耗时过长，且每一组的结果基本稳定，4组实验结果与理论结果相符，因此没有做过多的实验。</p>
 </blockquote>
-<p>由于第一组实验的严重误差，所以决定对513大小的矩阵程序再运行，查看结果。<br><img src="/2017/04/12/矩阵转置速度与Cache命中率分析/2.jpg" alt="513异常测试结果"></p>
+<h3 id="额外测试"><a href="#额外测试" class="headerlink" title="额外测试"></a>额外测试</h3><p>由于第一组实验的严重误差，所以决定对513大小的矩阵程序再运行，查看结果。<br><img src="/2017/04/12/矩阵转置速度与Cache命中率分析/2.jpg" alt="513异常测试结果"></p>
 <p>最后求得平均值为 1380.944， 略快于511大小的矩阵，并且这次实验的结果较为稳定。</p>
-<hr>
-<p>接下来使用相同的代码，做Cache命中率分析，使用软件为Valgrind。每组实验采用了千次循环，在程序本身运行的前提下，又加入了动态测试工具，<strong>耗时极长</strong>。</p>
+<h2 id="比较Cache命中率"><a href="#比较Cache命中率" class="headerlink" title="比较Cache命中率"></a>比较Cache命中率</h2><p>接下来使用相同的代码，做Cache命中率分析，使用软件为Valgrind。每组实验采用了千次循环，在程序本身运行的前提下，又加入了动态测试工具，<strong>耗时极长</strong>。</p>
 <h3 id="第一组-1"><a href="#第一组-1" class="headerlink" title="第一组"></a>第一组</h3><table>
 <thead>
 <tr>
-<th>#</th>
+<th>　</th>
 <th>511</th>
 <th>512</th>
 <th>513</th>
@@ -368,7 +367,7 @@
 <h3 id="第二组-1"><a href="#第二组-1" class="headerlink" title="第二组"></a>第二组</h3><table>
 <thead>
 <tr>
-<th>#</th>
+<th>　</th>
 <th>1023</th>
 <th>1024</th>
 <th>1025</th>
@@ -469,8 +468,65 @@
 </table>
 <blockquote>
 <p>数据量极其庞大，仅挑选其中部分进行分析。<br>使用该软件时，每一次测试的结果均相同。</p>
-<p>困了 先睡会儿，起来再研究。。。。。。</p>
 </blockquote>
+<h2 id="综合分析"><a href="#综合分析" class="headerlink" title="综合分析"></a>综合分析</h2><h3 id="速度"><a href="#速度" class="headerlink" title="速度"></a>速度</h3><p>对于矩阵转置速度比较中，大小为513的矩阵进行转置测试，其结果极不稳定，前10次的测试中，有一半以上的用时远高于512大小的矩阵，而在之后重复多次测试后，结果趋于稳定。原因不明。</p>
+<h3 id="命中率"><a href="#命中率" class="headerlink" title="命中率"></a>命中率</h3><h4 id="Instruction"><a href="#Instruction" class="headerlink" title="Instruction"></a>Instruction</h4><p>2^n级的指令数基本在2^n-1和2^n+1指令数的80%，指令的miss数基本相同个。所以2^n级指令的miss率更高。</p>
+<h4 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h4><p>由于数据量庞大，因此每组样例中的测试数据所用到的Date数差距不太大，差距在0.5%以内且接近正比例关系。而miss数量有较大差距。</p>
+<p>在第一组测试数据中，511的miss数量远小于512和513，大约只有后者的三分之一。而512的miss数量略比513的高。未命中率上511仅有2.3%，而后两者在6.6%左右，且512高于513。</p>
+<p>在第二组测试数据中，miss数就比较接近，且呈正相关，不过在miss率上面，1024最高，但是与1023的误差极小，而1025的miss率比1024低了0.005%，甚至低于1023。</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>参考内容：<a href="http://stackoverflow.com/questions/11413855/why-is-transposing-a-matrix-of-512x512-much-slower-than-transposing-a-matrix-of" target="_blank" rel="external">stackoverflow问答帖</a></p>
+<p>其主要原因和cache构造以及读写数据的方式有关，目前计算机采用的cache替换策略主要为LRU，映射方式主要为组相联。</p>
+<p>每一个内存地址对应一个cache分组，且只能存放在该分组中，一个分组可以有多行。若分组已满，则采用LRU替换策略进行替换。</p>
+<p>矩阵的数据是连续存放，当矩阵大小为某个数或其整数倍时，当连续选取同一列中的数据时，就会存放到同一分组中，会造成cache中空间位置不足，而执行替换策略，在下一次使用时又需要重新替换回来。而其他位置的cache空间没有被充分利用。</p>
+<p>而当这个矩阵大小不为某个数的整数倍时，连续选取同一列中的数据就不会存放在同一分组中，而是其他分组中，当再次选用数据时，数据已经存在于cache中就不需要重新读取，节省了读写时间。</p>
+<p>那个数主要有cache每组的行数和行数容量来决定。</p>
+<h3 id="附：Java环境下的测试"><a href="#附：Java环境下的测试" class="headerlink" title="附：Java环境下的测试"></a>附：Java环境下的测试</h3><p>C语言在运行时，不确定是否有进行语法优化，而Java在JVM虚拟机环境下运行，在运行时会进行指令重排进行优化，节省运算时间。</p>
+<p>实验代码：</p>
+<pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> TIMES <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 重复次数</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Long<span class="token punctuation">[</span><span class="token punctuation">]</span> t <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Long</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>0L<span class="token punctuation">,</span> 0L<span class="token punctuation">,</span> 0L<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 时间数组，统计每一类所以用时间总和</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> level <span class="token operator">=</span> <span class="token number">512</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 测试的矩阵大小级别</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>n <span class="token operator">&lt;=</span> <span class="token number">20</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">printf</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token string">"\t"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">trans</span><span class="token punctuation">(</span>level <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">trans</span><span class="token punctuation">(</span>level<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">trans</span><span class="token punctuation">(</span>level <span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            n<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Average: \n"</span>
+                <span class="token operator">+</span> <span class="token punctuation">(</span>level <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> t<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">/</span> <span class="token number">20</span> <span class="token operator">+</span> <span class="token string">"\n"</span>
+                <span class="token operator">+</span> level <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> t<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">/</span> <span class="token number">20</span> <span class="token operator">+</span> <span class="token string">"\n"</span>
+                <span class="token operator">+</span> <span class="token punctuation">(</span>level <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> t<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">/</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">trans</span><span class="token punctuation">(</span><span class="token keyword">int</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Long start_time<span class="token punctuation">,</span> end_time<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> array<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>size<span class="token punctuation">]</span><span class="token punctuation">[</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> i <span class="token operator">+</span> j<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        start_time <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> TIMES<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">int</span> tmp <span class="token operator">=</span> array<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    array<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> array<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    array<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        end_time <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Long time <span class="token operator">=</span> <span class="token punctuation">(</span>end_time <span class="token operator">-</span> start_time<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t<span class="token punctuation">[</span>size <span class="token operator">-</span> level <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> time<span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Size-"</span> <span class="token operator">+</span> size <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> time <span class="token operator">+</span> <span class="token string">"    "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果如图：<br>从左到右分别是 实验序号、矩阵大小和运行时间<br><img src="/2017/04/12/矩阵转置速度与Cache命中率分析/java512.jpg" alt="512级测试结果"></p>
+<p><img src="/2017/04/12/矩阵转置速度与Cache命中率分析/java1024.jpg" alt="1024级测试结果"></p>
 ]]></content>
     
     <summary type="html">
