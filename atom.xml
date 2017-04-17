@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://stevenxiaoming.github.io/"/>
-  <updated>2017-04-14T08:11:31.044Z</updated>
+  <updated>2017-04-17T16:27:59.810Z</updated>
   <id>https://stevenxiaoming.github.io/</id>
   
   <author>
@@ -14,6 +14,80 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS配置网站服务器</title>
+    <link href="https://stevenxiaoming.github.io/2017/04/16/CentOS%E9%85%8D%E7%BD%AE%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://stevenxiaoming.github.io/2017/04/16/CentOS配置网站服务器/</id>
+    <published>2017-04-16T08:03:26.000Z</published>
+    <updated>2017-04-17T16:27:59.810Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用腾讯云服务器，1核 1GB内存 1Mbps 20G磁盘容量</p>
+<p>系统：CentOS 7.2 64位<br>计划使用 MySQL5.7 + JDK1.8 + Tomcat7 (+ Redis)</p>
+<p>由于是从Windows系统转Linux系统，所以一切配置从0开始。</p>
+<h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><h3 id="服务器连接"><a href="#服务器连接" class="headerlink" title="服务器连接"></a>服务器连接</h3><p>Windows本机安装 SSH Secure Shell Client 或其他工具，用于连接远程服务器。</p>
+<h3 id="设置安全组策略"><a href="#设置安全组策略" class="headerlink" title="设置安全组策略"></a>设置安全组策略</h3><p>增加http（80）端口和https（443）端口</p>
+<h3 id="修改默认密码"><a href="#修改默认密码" class="headerlink" title="修改默认密码"></a>修改默认密码</h3><p>登陆后使用了命令<code>passwd</code>设置新密码</p>
+<h2 id="安装JDK1-8"><a href="#安装JDK1-8" class="headerlink" title="安装JDK1.8"></a>安装JDK1.8</h2><ol>
+<li><p>下载JDK安装包，可到<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">官网</a>查看下载，或使用命令行后台下载</p>
+<blockquote>
+<p>Oracle需要同意协议才能下载所以需要添加部分参数，下载地址可前往官网获取</p>
+<pre><code> wget --no-check-certificate --no-cookie --header &quot;Cookie: oraclelicense=accept-securebackup-cookie;&quot; http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm
+</code></pre></blockquote>
+</li>
+<li><p>安装JDK，并检查是否安装成功</p>
+<pre><code> rpm -ivh jdk-8u121-linux-x64.rpm
+ java -version
+</code></pre></li>
+</ol>
+<p>JDK安装完成</p>
+<h2 id="安装MySQL5-7"><a href="#安装MySQL5-7" class="headerlink" title="安装MySQL5.7"></a>安装MySQL5.7</h2><ol>
+<li><p>下载MySQL安装包，可到<a href="http://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="external">官网</a>查看下载</p>
+<pre><code> wget https://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
+</code></pre></li>
+<li><p>配置Mysql Yum源，可参考官网安装教程</p>
+<pre><code> yum localinstall mysql57-community-release-el7-10.noarch.rpm
+</code></pre></li>
+<li><p>安装MySql</p>
+<pre><code> yum install mysql-community-server
+</code></pre></li>
+<li><p>启动MySql服务，并检查状态</p>
+<pre><code> systemctl start mysqld
+ systemctl status mysqld
+</code></pre></li>
+<li><p>设置开机启动</p>
+<pre><code> systemctl enable mysqld
+ systemctl daemon-reload
+</code></pre></li>
+<li><p>修改root默认密码</p>
+</li>
+</ol>
+<p>查找当前密码，MySQL5.7不再使用空密码，而是会生成一个默认密码，在在日志中可以查看</p>
+<pre><code>    grep &#39;temporary password&#39; /var/log/mysqld.log
+</code></pre><p>登录MySQL的root账号，修改密码(*代表设置的新密码)</p>
+<pre><code>    mysql -uroot -p
+    ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;********&#39;;
+</code></pre><ol>
+<li>修改数据库配置</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用腾讯云服务器，1核 1GB内存 1Mbps 20G磁盘容量&lt;/p&gt;
+&lt;p&gt;系统：CentOS 7.2 64位&lt;br&gt;计划使用 MySQL5.7 + JDK1.8 + Tomcat7 (+ Redis)&lt;/p&gt;
+&lt;p&gt;由于是从Windows系统转Linux系统，所以一切配
+    
+    </summary>
+    
+      <category term="项目PROJECT" scheme="https://stevenxiaoming.github.io/categories/%E9%A1%B9%E7%9B%AEPROJECT/"/>
+    
+    
+      <category term="CentOS" scheme="https://stevenxiaoming.github.io/tags/CentOS/"/>
+    
+      <category term="WebService" scheme="https://stevenxiaoming.github.io/tags/WebService/"/>
+    
+  </entry>
   
   <entry>
     <title>矩阵转置速度与Cache命中率分析</title>
@@ -746,6 +820,72 @@
 </tbody>
 </table>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>指令优化：Huffman（哈夫曼）树</p>
+<h2 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h2><p>个人理解，随意琢磨</p>
+<h3 id="如何实现在存储体中同时读取多个内存单元的数据？"><a href="#如何实现在存储体中同时读取多个内存单元的数据？" class="headerlink" title="如何实现在存储体中同时读取多个内存单元的数据？"></a>如何实现在存储体中同时读取多个内存单元的数据？</h3><h3 id="基本寻址方式及其效率"><a href="#基本寻址方式及其效率" class="headerlink" title="基本寻址方式及其效率"></a>基本寻址方式及其效率</h3><h4 id="寻址方式介绍"><a href="#寻址方式介绍" class="headerlink" title="寻址方式介绍"></a>寻址方式介绍</h4><p>计算机组成原理原理P124</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>算法</th>
+<th>主要优点</th>
+<th>主要缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>隐含寻址</td>
+<td>操作数在专用寄存器</td>
+<td>无存储器访问</td>
+<td>数据范围有限</td>
+</tr>
+<tr>
+<td>立即寻址</td>
+<td>操作数=A</td>
+<td>无存储器访问</td>
+<td>操作数幅值有限</td>
+</tr>
+<tr>
+<td>直接寻址</td>
+<td>EA=A</td>
+<td>简单</td>
+<td>地址范围有限</td>
+</tr>
+<tr>
+<td>间接寻址</td>
+<td>EA=(A)</td>
+<td>大的地址范围</td>
+<td>多重存储器访问</td>
+</tr>
+<tr>
+<td>寄存器寻址</td>
+<td>EA=R</td>
+<td>无存储器访问</td>
+<td>地址范围有限</td>
+</tr>
+<tr>
+<td>寄存器间接寻址</td>
+<td>EA=(R)</td>
+<td>大的地址范围</td>
+<td>额外存储器访问</td>
+</tr>
+<tr>
+<td>偏移寻址</td>
+<td>EA=A+(R)</td>
+<td>灵活</td>
+<td>复杂</td>
+</tr>
+<tr>
+<td>堆栈寻址</td>
+<td>EA=栈顶</td>
+<td>无存储器访问</td>
+<td>应用有限</td>
+</tr>
+</tbody>
+</table>
+<p>数据来源主要有<strong>指令</strong>、<strong>寄存器</strong>、<strong>内存</strong>和<strong>堆栈</strong></p>
+<h4 id="数据获取方式"><a href="#数据获取方式" class="headerlink" title="数据获取方式"></a>数据获取方式</h4><p>寄存器：只需要找到相关位置并读取<br>内存： 通过存储控制器到内存中找到数据并获取<br>指令（代码）：需要进行编译后再参与到计算</p>
+<p>实际效果可以通过代码实验测试（略）</p>
+<h3 id="内存编制"><a href="#内存编制" class="headerlink" title="内存编制"></a>内存编制</h3><p>内存编制方式有<strong>统一编址</strong>和<strong>独立编址</strong>。</p>
 ]]></content>
     
     <summary type="html">
@@ -1238,6 +1378,73 @@ DOM4J性能：131
       <category term="Codeforces" scheme="https://stevenxiaoming.github.io/tags/Codeforces/"/>
     
       <category term="nowcoder" scheme="https://stevenxiaoming.github.io/tags/nowcoder/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java关系模式</title>
+    <link href="https://stevenxiaoming.github.io/2017/03/22/Java%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://stevenxiaoming.github.io/2017/03/22/Java关系模式/</id>
+    <published>2017-03-22T14:45:17.000Z</published>
+    <updated>2017-04-17T16:39:49.730Z</updated>
+    
+    <content type="html"><![CDATA[<p>先开一个坑，学习关系模式的时候做笔记</p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><ul>
+<li>开闭原则（Open Close Principle）：对扩展开放，对修改关闭</li>
+<li>里氏代换原则（Liskov Substitution Principle）：调用父类，子类也可以运行</li>
+<li>依赖倒转原则（Dependence Inversion Principle）：子类替换父类，程序行为无变化</li>
+<li>接口隔离原则（Interface Segregation Principle）：一个接口一个角色</li>
+<li>合成/聚合复用原则（Composite Reuse Principle）：新对象 = 新对象 + 旧对象，避免继承</li>
+<li>最少知识原则（Demeter Principle）：对象之间相互独立</li>
+</ul>
+<h2 id="设计模式分类"><a href="#设计模式分类" class="headerlink" title="设计模式分类"></a>设计模式分类</h2><p>创建型模式(5种)：</p>
+<ul>
+<li>工厂方法模式（Factory Method）</li>
+<li>抽象工厂模式（Abstract Factory）</li>
+<li>单例模式（Singleton）</li>
+<li>建造者模式（Builder）</li>
+<li>原型模式（Prototype）</li>
+</ul>
+<p>结构型模式(7种)：</p>
+<ul>
+<li>适配器模式（Adapter）</li>
+<li>装饰器模式（Decorator）</li>
+<li>代理模式（Proxy）</li>
+<li>外观模式（Facade）</li>
+<li>桥接模式（Bridge）</li>
+<li>组合模式（Composite）</li>
+<li>享元模式（Flyweight）</li>
+</ul>
+<p>行为型模式(11种)</p>
+<ul>
+<li>策略模式（strategy）</li>
+<li>模板方法模式（Template Method）</li>
+<li>观察者模式（Observer）</li>
+<li>迭代子模式（Iterator）</li>
+<li>责任链模式（Chain of Responsibility）</li>
+<li>命令模式（Command）</li>
+<li>备忘录模式（Memento）</li>
+<li>状态模式（State）</li>
+<li>访问者模式（Visitor）</li>
+<li>中介者模式（Mediator）</li>
+<li>解释器模式（Interpreter）</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;先开一个坑，学习关系模式的时候做笔记&lt;/p&gt;
+&lt;h2 id=&quot;设计原则&quot;&gt;&lt;a href=&quot;#设计原则&quot; class=&quot;headerlink&quot; title=&quot;设计原则&quot;&gt;&lt;/a&gt;设计原则&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;开闭原则（Open Close Principle）：对扩展
+    
+    </summary>
+    
+      <category term="学习STUDY" scheme="https://stevenxiaoming.github.io/categories/%E5%AD%A6%E4%B9%A0STUDY/"/>
+    
+    
+      <category term="关系模式" scheme="https://stevenxiaoming.github.io/tags/%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="java" scheme="https://stevenxiaoming.github.io/tags/java/"/>
     
   </entry>
   
