@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://stevenxiaoming.github.io/"/>
-  <updated>2017-04-17T16:27:59.810Z</updated>
+  <updated>2017-04-17T16:44:16.817Z</updated>
   <id>https://stevenxiaoming.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://stevenxiaoming.github.io/2017/04/16/CentOS%E9%85%8D%E7%BD%AE%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     <id>https://stevenxiaoming.github.io/2017/04/16/CentOS配置网站服务器/</id>
     <published>2017-04-16T08:03:26.000Z</published>
-    <updated>2017-04-17T16:27:59.810Z</updated>
+    <updated>2017-04-17T16:44:16.817Z</updated>
     
     <content type="html"><![CDATA[<p>使用腾讯云服务器，1核 1GB内存 1Mbps 20G磁盘容量</p>
 <p>系统：CentOS 7.2 64位<br>计划使用 MySQL5.7 + JDK1.8 + Tomcat7 (+ Redis)</p>
@@ -28,49 +28,28 @@
 <h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><h3 id="服务器连接"><a href="#服务器连接" class="headerlink" title="服务器连接"></a>服务器连接</h3><p>Windows本机安装 SSH Secure Shell Client 或其他工具，用于连接远程服务器。</p>
 <h3 id="设置安全组策略"><a href="#设置安全组策略" class="headerlink" title="设置安全组策略"></a>设置安全组策略</h3><p>增加http（80）端口和https（443）端口</p>
 <h3 id="修改默认密码"><a href="#修改默认密码" class="headerlink" title="修改默认密码"></a>修改默认密码</h3><p>登陆后使用了命令<code>passwd</code>设置新密码</p>
-<h2 id="安装JDK1-8"><a href="#安装JDK1-8" class="headerlink" title="安装JDK1.8"></a>安装JDK1.8</h2><ol>
-<li><p>下载JDK安装包，可到<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">官网</a>查看下载，或使用命令行后台下载</p>
+<h2 id="安装JDK1-8"><a href="#安装JDK1-8" class="headerlink" title="安装JDK1.8"></a>安装JDK1.8</h2><h3 id="下载JDK安装包"><a href="#下载JDK安装包" class="headerlink" title="下载JDK安装包"></a>下载JDK安装包</h3><p>可到<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">官网</a>查看下载，或使用命令行后台下载</p>
 <blockquote>
 <p>Oracle需要同意协议才能下载所以需要添加部分参数，下载地址可前往官网获取</p>
-<pre><code> wget --no-check-certificate --no-cookie --header &quot;Cookie: oraclelicense=accept-securebackup-cookie;&quot; http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm
+<pre><code>    wget --no-check-certificate --no-cookie --header &quot;Cookie: oraclelicense=accept-securebackup-cookie;&quot; http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm
 </code></pre></blockquote>
-</li>
-<li><p>安装JDK，并检查是否安装成功</p>
-<pre><code> rpm -ivh jdk-8u121-linux-x64.rpm
- java -version
-</code></pre></li>
-</ol>
-<p>JDK安装完成</p>
-<h2 id="安装MySQL5-7"><a href="#安装MySQL5-7" class="headerlink" title="安装MySQL5.7"></a>安装MySQL5.7</h2><ol>
-<li><p>下载MySQL安装包，可到<a href="http://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="external">官网</a>查看下载</p>
-<pre><code> wget https://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
-</code></pre></li>
-<li><p>配置Mysql Yum源，可参考官网安装教程</p>
-<pre><code> yum localinstall mysql57-community-release-el7-10.noarch.rpm
-</code></pre></li>
-<li><p>安装MySql</p>
-<pre><code> yum install mysql-community-server
-</code></pre></li>
-<li><p>启动MySql服务，并检查状态</p>
-<pre><code> systemctl start mysqld
- systemctl status mysqld
-</code></pre></li>
-<li><p>设置开机启动</p>
-<pre><code> systemctl enable mysqld
- systemctl daemon-reload
-</code></pre></li>
-<li><p>修改root默认密码</p>
-</li>
-</ol>
-<p>查找当前密码，MySQL5.7不再使用空密码，而是会生成一个默认密码，在在日志中可以查看</p>
+<h3 id="安装JDK，并检查是否安装成功"><a href="#安装JDK，并检查是否安装成功" class="headerlink" title="安装JDK，并检查是否安装成功"></a>安装JDK，并检查是否安装成功</h3><pre><code>    rpm -ivh jdk-8u121-linux-x64.rpm
+    java -version
+</code></pre><p>JDK安装完成</p>
+<h2 id="安装MySQL5-7"><a href="#安装MySQL5-7" class="headerlink" title="安装MySQL5.7"></a>安装MySQL5.7</h2><h3 id="下载MySQL安装包"><a href="#下载MySQL安装包" class="headerlink" title="下载MySQL安装包"></a>下载MySQL安装包</h3><p>可到<a href="http://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="external">官网</a>查看下载</p>
+<pre><code>    wget https://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
+</code></pre><h3 id="配置Mysql-Yum源，可参考官网安装教程"><a href="#配置Mysql-Yum源，可参考官网安装教程" class="headerlink" title="配置Mysql Yum源，可参考官网安装教程"></a>配置Mysql Yum源，可参考官网安装教程</h3><pre><code>    yum localinstall mysql57-community-release-el7-10.noarch.rpm
+</code></pre><h3 id="安装MySql"><a href="#安装MySql" class="headerlink" title="安装MySql"></a>安装MySql</h3><pre><code>    yum install mysql-community-server
+</code></pre><h3 id="启动MySql服务，并检查状态"><a href="#启动MySql服务，并检查状态" class="headerlink" title="启动MySql服务，并检查状态"></a>启动MySql服务，并检查状态</h3><pre><code>    systemctl start mysqld
+    systemctl status mysqld
+</code></pre><h3 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h3><pre><code>    systemctl enable mysqld
+    systemctl daemon-reload
+</code></pre><h3 id="修改root默认密码"><a href="#修改root默认密码" class="headerlink" title="修改root默认密码"></a>修改root默认密码</h3><p>查找当前密码，MySQL5.7不再使用空密码，而是会生成一个默认密码，在在日志中可以查看</p>
 <pre><code>    grep &#39;temporary password&#39; /var/log/mysqld.log
 </code></pre><p>登录MySQL的root账号，修改密码(*代表设置的新密码)</p>
 <pre><code>    mysql -uroot -p
     ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;********&#39;;
-</code></pre><ol>
-<li>修改数据库配置</li>
-</ol>
-]]></content>
+</code></pre><h3 id="修改数据库配置"><a href="#修改数据库配置" class="headerlink" title="修改数据库配置"></a>修改数据库配置</h3>]]></content>
     
     <summary type="html">
     
@@ -1442,9 +1421,9 @@ DOM4J性能：131
       <category term="学习STUDY" scheme="https://stevenxiaoming.github.io/categories/%E5%AD%A6%E4%B9%A0STUDY/"/>
     
     
-      <category term="关系模式" scheme="https://stevenxiaoming.github.io/tags/%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F/"/>
-    
       <category term="java" scheme="https://stevenxiaoming.github.io/tags/java/"/>
+    
+      <category term="关系模式" scheme="https://stevenxiaoming.github.io/tags/%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
